@@ -15,15 +15,19 @@
 }
 
 /* Global Styles */
-body {
+body, html {
     font-family: 'Leto', sans-serif;
     color: var(--font-color-primary);
     background-color: var(--background-color);
+
+    margin: 0;
+    padding: 0;
     
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    width: 100vw;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,6 +47,14 @@ header {
 }
 
 /* Main */
+main {
+    margin-top: 10px;
+    width: 92%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
 
 #functions-bar {
     display: flex;
@@ -58,6 +70,39 @@ header {
     font-weight: 400;
     font-size: 1rem;
     color: var(--font-color-deselected);
+}
+
+#type-area {
+    width: 80vw;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    background: transparent;
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin-top:20vh;
+    letter-spacing: 0.12rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+#type-area .placeholder {
+    z-index: 1;
+    position: absolute;
+    color: #777777;
+}
+
+#type-area .user-text {
+    z-index: 4;
+    position: absolute;
+    color: #fff;
+}
+
+
+#wpm-display {
+    margin-top: 20px;
+    font-size: 1.5rem;
 }
 
 /* Footer */
