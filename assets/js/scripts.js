@@ -22,8 +22,11 @@ function generateText() {
         'when', 'which', 'them', 'some', 'me', 'people', 'take', 'out', 'into', 'just'];
 
     let text = '';
-    // Use VW to calculate the number of words to generate
-    for (let i = 0; i < 100; i++) {
+
+    //Calculate length based off window size
+    let textLength = Math.min(Math.floor(window.innerWidth / 8), 100);
+
+    for (let i = 0; i < textLength; i++) {
         text += words[Math.floor(Math.random() * words.length)] + ' ';
     }
     return text.trim();
