@@ -5,10 +5,12 @@
 /* Variables */
 :root {
     --primary-color: white;
-    --accent-color: #f1c40f;
+    --accent-color: #c8f10f;
     --background-color: #323335;
-    --font-color-primary: #c4c1c1;
+    --element-color: #222222;
+    --font-color-primary: #cccccc;
     --font-color-secondary: #fff;
+    --font-color-deselected: #747474;
    
 }
 
@@ -28,6 +30,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+.selected {
+    color: var(--accent-color);
+}
+
 /* Header */
 header {
     width: 90%;
@@ -39,7 +45,19 @@ header {
 /* Main */
 
 #functions-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+    padding: 2px 24px;
+    border-radius: 14px;
 
+    background-color: var(--element-color);
+}
+
+#functions-bar h2 {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--font-color-deselected);
 }
 
 /* Footer */
