@@ -9,7 +9,7 @@
     --background-color: #29292b;
     --element-color: #222222;
     --font-color-primary: #cccccc;
-    --font-color-secondary: #fff;
+    --font-color-secondary: #4d4d4d;
     --font-color-deselected: #747474;
     --font-color-wrong: #c40f0f;
    
@@ -47,6 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 header {
     width: 90%;
+    max-width: 1000px;
     height: 100px;
     background-color: var(--background-color);
    
@@ -99,7 +100,7 @@ main {
 #type-area .placeholder {
     z-index: 1;
     position: absolute;
-    color: #4d4d4d;
+    color: var(--font-color-secondary)
 }
 
 #type-area .user-text {
@@ -125,7 +126,15 @@ main {
 footer {
     position: fixed;
     bottom: 20px;
-    color: var(--element-color);
+    color: var(--font-color-secondary);
+}
+
+footer .caps-alert {
+    color: var(--font-color-secondary);
+}
+
+footer .caps-alert.caps-enabled {
+    color: var(--accent-color);
 }
 
 /* Media Queries */

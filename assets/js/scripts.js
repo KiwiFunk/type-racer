@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formatText();
         });
     }
+
     formatText();
     getUserInput();
 });
@@ -56,6 +57,16 @@ function getUserInput() {
 
             else wrongInput();
         }
+
+
+        //Caps Lock Alert
+        if (e.getModifierState('CapsLock')) {
+            document.querySelector('.caps-alert').classList.add('caps-enabled');
+        } else {
+            document.querySelector('.caps-alert').classList.remove('caps-enabled');
+        }
+
+
     });
 }
 
