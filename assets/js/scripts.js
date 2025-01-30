@@ -1,3 +1,7 @@
+// Global Values
+let userIsTyping = false;
+let timerInterval;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     //Functions bar functionality
@@ -47,6 +51,12 @@ function getUserInput() {
         const currentText = userTextElement.textContent;
         
         if ((!e.ctrlKey && !e.altKey && !e.metaKey && e.key.length === 1) || e.key === 'Backspace') {
+
+            if (!userIsTyping) {
+                userIsTyping = true;
+                startTimer();
+            }
+
             if (currentText.length < targetText.length && e.key === targetText[currentText.length]) {
                 userTextElement.textContent += e.key;
             }
@@ -87,6 +97,8 @@ function wrongInput() {
  */
 
 function formatText() {
+    userIsTyping = false;
+    startTimer()
     //Generate New Text and clear User Input
     let textContent = generateText();
     document.querySelector('.user-text').textContent = '';
@@ -157,4 +169,47 @@ function formatNumbers(text) {
         if (i < words.length - 1) result += ' ';
     }
     document.querySelector('.placeholder').textContent = result;
+}
+
+//Timer functions
+
+function startTimer() {
+    const timerElement = document.querySelector('.number');
+    timeLeft = 20; // Reset timer to 20 seconds
+
+    
+
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
+
+    timerElement.textContent = timeLeft;
+
+    timerInterval = setInterval(() => {
+        if (userIsTyping) {
+            if (timeLeft > 0) {
+                timeLeft--;
+                timerElement.innerText = timeLeft;
+            } else {
+                clearInterval(timerInterval);
+                calculateWPM();
+            }
+        } 
+    }, 1000);
+}
+
+function calculateWPM() {
+
+    //Hide Typing Area
+    //replace timer div with WPM result
+    //Empty functions bar and add a reset button that triggers resetTyper()
+
+}
+
+function resetTyper() {
+    //format text
+    //reset functions bar
+    //reset timer
+    //show typing area
+
 }

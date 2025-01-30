@@ -42,6 +42,9 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-color) !important;
 }
 
+.hidden {
+    display: none;
+}
 
 /* Header */
 header {
@@ -85,6 +88,23 @@ main {
     color: var(--font-color-primary);
 }
 
+/* Timer */
+
+#timer {
+    margin-top: 140px;
+    color: var(--font-color-secondary);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+#timer .number {
+    color: var(--font-color-secondary);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Typing Area */
+
 #type-area {
     width: 80vw;
     max-width: 900px;
@@ -94,7 +114,6 @@ main {
     background: transparent;
     font-weight: 500;
     font-size: 1.8rem;
-    margin-top:20vh;
     letter-spacing: 0.14rem;
     position: relative;
 }
