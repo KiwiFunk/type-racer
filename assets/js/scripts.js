@@ -119,12 +119,42 @@ function formatPunctuation(text) {
                 }
                 else result += ' ';                 // else add a space bewteen words
             }
+
+            if (i === words.length - 1) {           // if last word
+                result += '.';                      // add a period
+            }
         }
         document.querySelector('.placeholder').textContent = result;
     }
 }
 
 function formatNumbers(text) {
-    console.log('formatting numbers');
-    
+    if (!document.querySelector(`[data-type="numerical"]`).classList.contains('selected')) {
+        document.querySelector('.placeholder').textContent = generateText();
+        return;
+    }
+    else {
+        const words = text.split(' ');
+        let result = '';
+
+        for (let i = 0; i < words.length; i++) {
+            result += words[i];
+            
+            if (Math.random() < 0.04) {                                     // 4% chance to add a number
+                const numLength = Math.floor(Math.random() * 3) + 3;        // random length 3-5
+                const num = Math.floor(Math.random() * Math.pow(10, numLength));
+                result += ' ' + num;
+            }
+
+            if (i < words.length - 1) {
+                result += ' ';
+            }
+        }
+
+        document.querySelector('.placeholder').textContent = result;
+
+    }
 }
+
+//call function to see which functions are selected
+//call function for each function selected

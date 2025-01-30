@@ -99,7 +99,7 @@ main {
 #type-area .placeholder {
     z-index: 1;
     position: absolute;
-    color: #585757;
+    color: #4d4d4d;
 }
 
 #type-area .user-text {
