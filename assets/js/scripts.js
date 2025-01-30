@@ -58,7 +58,6 @@ function getUserInput() {
             else wrongInput();
         }
 
-
         //Caps Lock Alert
         if (e.getModifierState('CapsLock')) {
             document.querySelector('.caps-alert').classList.add('caps-enabled');
@@ -66,6 +65,10 @@ function getUserInput() {
             document.querySelector('.caps-alert').classList.remove('caps-enabled');
         }
 
+        //Generate new text if user completes the current text
+        if(userTextElement.textContent === targetText) {
+            formatText();
+        }
 
     });
 }
