@@ -29,22 +29,10 @@ function generateText() {
         'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she'];
 
     let text = '';
-    const paragraphs = 2 + Math.floor(Math.random() * 2); // 2-3 paragraphs
-
-    for (let i = 0; i < paragraphs; i++) {
-        const sentences = 3 + Math.floor(Math.random() * 3); // 3-5 sentences per paragraph
-        for (let j = 0; j < sentences; j++) {
-            const length = 6 + Math.floor(Math.random() * 8); // 6-13 words per sentence
-            for (let k = 0; k < length; k++) {
-                text += words[Math.floor(Math.random() * words.length)];
-                text += k < length - 1 ? ' ' : '. ';
-            }
-        }
-        text += '\n\n';
+    for (let i = 0; i < 100; i++) {
+        text += words[Math.floor(Math.random() * words.length)] + ' ';
     }
-
     return text.trim();
-
 }
 
 function getUserInput() {
@@ -81,12 +69,9 @@ function wrongInput() {
 
 function formatText(option) {
 
-    const textContent = document.querySelector('.placeholder').textContent;
+    const textContent = generateText();
 
     switch (option) {
-        case 'capitalzie':
-            formatUppercase(textContent);
-            break;
         case 'punctuation':
             formatPunctuation(textContent);
             break;
@@ -96,33 +81,40 @@ function formatText(option) {
         default:
             alert(`Unknown option type: ${option}`);
             throw `Unknown option type: ${option}. Aborting!`;
-        
+         
     }
 }
 
-function formatUppercase(text) {
-    console.log(text);
-}
-
 function formatPunctuation(text) {
-    if (text.includes('.')) {
-        text = text.replace(/\./g, '');
-        document.querySelector('.placeholder').textContent = text;
+    //If punctuation is not selected, generate new text with no formatting.
+    if (!document.querySelector(`[data-type="punctuation"]`).classList.contains('selected')) {
+        document.querySelector('.placeholder').textContent = generateText();
+        return;
     }
     else {
         const words = text.split(' ');              // split paragraph into word array
         let result = '';                            // variable to hold new string  
-          
+        let shouldCapitalize = true;                // flag to capitalize first word
+
         for (let i = 0; i < words.length; i++) {
+
+            if (shouldCapitalize) {                 // capitalize first word
+
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                shouldCapitalize = false;
+            }
 
             result += words[i];                     // append word to result string
 
             if (i < words.length - 1) {             // if not the last word
-                if (Math.random() < 0.2) {          // 20% chance of adding a period
+                if (Math.random() < 0.1) {          // 10% chance of adding a period
                     result += '. ';
-                } else {
-                    result += ' ';                  // else add a space bewteen words
+                    shouldCapitalize = true;        // next word should be capitalized
+                } 
+                else if (Math.random() < 0.05) {     // 5% chance of adding a comma
+                    result += ', ';
                 }
+                else result += ' ';                 // else add a space bewteen words
             }
         }
         document.querySelector('.placeholder').textContent = result;

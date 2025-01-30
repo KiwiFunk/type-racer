@@ -114,17 +114,18 @@ main {
 }
 
 .user-text {
-
     color: var(--font-color);
-
 }
 
 .user-text.wrong-input {
-
     color: var(--font-color-wrong);
-
 }
 
 /* Footer */
+footer {
+    position: fixed;
+    bottom: 20px;
+    color: var(--element-color);
+}
 
 /* Media Queries */
