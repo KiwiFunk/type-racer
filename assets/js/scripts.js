@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Functions bar functionality
     const functionElements = document.querySelectorAll('.toggle');
-    for (let toggle of functionElements) {
-        toggle.addEventListener('click', function() {
+    for (let optionToggle of functionElements) {
+        optionToggle.addEventListener('click', function() {
             this.classList.toggle('selected');
         });
     }
@@ -16,7 +16,31 @@ function populateTextArea() {
     const typeBox = document.getElementById('type-area');
     const placeholderText = typeBox.querySelector('.placeholder'); 
     const userTextElement = typeBox.querySelector('.user-text');
-    placeholderText.textContent = 'Hello World!';
+    placeholderText.textContent = generateText();
+}
+
+function generateText() {
+    const words = ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I', 
+        'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
+        'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she'];
+
+    let text = '';
+    const paragraphs = 2 + Math.floor(Math.random() * 2); // 2-3 paragraphs
+
+    for (let i = 0; i < paragraphs; i++) {
+        const sentences = 3 + Math.floor(Math.random() * 3); // 3-5 sentences per paragraph
+        for (let j = 0; j < sentences; j++) {
+            const length = 6 + Math.floor(Math.random() * 8); // 6-13 words per sentence
+            for (let k = 0; k < length; k++) {
+                text += words[Math.floor(Math.random() * words.length)];
+                text += k < length - 1 ? ' ' : '. ';
+            }
+        }
+        text += '\n\n';
+    }
+
+    return text.trim();
+
 }
 
 function getUserInput() {
@@ -29,7 +53,7 @@ function getUserInput() {
         const targetText = placeholderText.textContent;
         const currentText = userTextElement.textContent;
         
-        if (!e.ctrlKey && !e.altKey && !e.metaKey && e.key.length === 1) {
+        if ((!e.ctrlKey && !e.altKey && !e.metaKey && e.key.length === 1) || e.key === 'Backspace') {
             if (currentText.length < targetText.length && e.key === targetText[currentText.length]) {
                 userTextElement.textContent += e.key;
             }
@@ -45,10 +69,8 @@ function getUserInput() {
 
 function wrongInput() {
     const userTextElement = document.querySelector('.user-text');
-    const originalColor = userTextElement.style.color;
-    userTextElement.style.color = 'var(--font-color-wrong)';
+    userTextElement.classList.add('wrong-input');
     setTimeout(() => {
-        userTextElement.style.color = originalColor;
+        userTextElement.classList.remove('wrong-input');
     }, 100);
-
 }

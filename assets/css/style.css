@@ -29,6 +29,10 @@ body, html {
     justify-content: center;
     align-items: center;
     width: 100vw;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -36,8 +40,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .selected {
-    color: var(--accent-color);
+    color: var(--accent-color) !important;
 }
+
 
 /* Header */
 header {
@@ -71,11 +76,13 @@ main {
     font-weight: 400;
     font-size: 1rem;
     color: var(--font-color-deselected);
-    text-transform: lowercase
+    text-transform: lowercase;
+    transition: all 0.2s ease-in-out;
 }
 
 #type-area {
     width: 80vw;
+    max-width: 900px;
     resize: none;
     font-family: 'Montserrat', sans-serif;
     border: none;
@@ -98,14 +105,24 @@ main {
 #type-area .user-text {
     z-index: 4;
     position: absolute;
-    color: #fff;
     transition: all 0.09s ease-in-out;
 }
-
 
 #wpm-display {
     margin-top: 20px;
     font-size: 1.5rem;
+}
+
+.user-text {
+
+    color: var(--font-color);
+
+}
+
+.user-text.wrong-input {
+
+    color: var(--font-color-wrong);
+
 }
 
 /* Footer */
