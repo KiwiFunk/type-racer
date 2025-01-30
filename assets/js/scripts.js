@@ -6,8 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         optionToggle.addEventListener('click', function() {
             this.classList.toggle('selected');
 
-            const option = this.getAttribute('data-option');
-            formatText(option);
+            let optionType = this.getAttribute('data-type');
+            formatText(optionType);
+
         });
     }
 
@@ -79,15 +80,18 @@ function wrongInput() {
 }
 
 function formatText(option) {
+
+    const textContent = document.querySelector('.placeholder').textContent;
+
     switch (option) {
         case 'capitalzie':
-            formatUppercase();
+            formatUppercase(textContent);
             break;
         case 'punctuation':
-            formatPunctuation();
+            formatPunctuation(textContent);
             break;
         case 'numerical':
-            formatNumbers();
+            formatNumbers(textContent);
             break;
         default:
             alert(`Unknown option type: ${option}`);
@@ -96,14 +100,36 @@ function formatText(option) {
     }
 }
 
-function formatUppercase() {
-    
+function formatUppercase(text) {
+    console.log(text);
 }
 
-function formatPunctuation() {
-    
+function formatPunctuation(text) {
+    if (text.includes('.')) {
+        text = text.replace(/\./g, '');
+        document.querySelector('.placeholder').textContent = text;
+    }
+    else {
+        const words = text.split(' ');              // split paragraph into word array
+        let result = '';                            // variable to hold new string  
+          
+        for (let i = 0; i < words.length; i++) {
+
+            result += words[i];                     // append word to result string
+
+            if (i < words.length - 1) {             // if not the last word
+                if (Math.random() < 0.2) {          // 20% chance of adding a period
+                    result += '. ';
+                } else {
+                    result += ' ';                  // else add a space bewteen words
+                }
+            }
+        }
+        document.querySelector('.placeholder').textContent = result;
+    }
 }
 
-function formatNumbers() {
+function formatNumbers(text) {
+    console.log('formatting numbers');
     
 }
