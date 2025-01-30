@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let optionToggle of functionElements) {
         optionToggle.addEventListener('click', function() {
             this.classList.toggle('selected');
+
+            const option = this.getAttribute('data-option');
+            formatText(option);
         });
     }
 
@@ -73,4 +76,34 @@ function wrongInput() {
     setTimeout(() => {
         userTextElement.classList.remove('wrong-input');
     }, 100);
+}
+
+function formatText(option) {
+    switch (option) {
+        case 'capitalzie':
+            formatUppercase();
+            break;
+        case 'punctuation':
+            formatPunctuation();
+            break;
+        case 'numerical':
+            formatNumbers();
+            break;
+        default:
+            alert(`Unknown option type: ${option}`);
+            throw `Unknown option type: ${option}. Aborting!`;
+        
+    }
+}
+
+function formatUppercase() {
+    
+}
+
+function formatPunctuation() {
+    
+}
+
+function formatNumbers() {
+    
 }
