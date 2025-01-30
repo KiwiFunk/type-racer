@@ -7,10 +7,10 @@
     --accent-color: #c8f10f;
     --background-color: #29292b;
     --element-color: #222222;
-    --font-color-primary: #cccccc;
+    --font-color-primary: #ebebeb;
     --font-color-secondary: #4d4d4d;
     --font-color-deselected: #747474;
-    --font-color-wrong: #c40f0f;
+    --font-color-wrong: #b80f0f;
    
 }
 
@@ -95,8 +95,7 @@ main {
     font-weight: 500;
     font-size: 1.8rem;
     margin-top:20vh;
-    letter-spacing: 0.12rem;
-    color: white;
+    letter-spacing: 0.14rem;
     position: relative;
     z-index: 1;
 }
@@ -119,11 +118,18 @@ main {
 }
 
 .user-text {
-    color: var(--font-color);
+    color: var(--font-color-primary);
+
+    /* Cursor */
+    padding-right: .2px;
+    border-right: 2.6px solid;
+    border-color: var(--accent-color);
+    animation: cursor .5s step-end infinite alternate;
 }
 
 .user-text.wrong-input {
     color: var(--font-color-wrong);
+    border-color: var(--font-color-wrong);
 }
 
 /* Footer */
@@ -144,6 +150,12 @@ footer .caps-alert {
 
 footer .caps-alert.caps-enabled {
     color: var(--accent-color);
+}
+
+/* Animation */
+
+@keyframes cursor {
+    50% { border-color: transparent }
 }
 
 /* Media Queries */
