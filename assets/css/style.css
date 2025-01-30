@@ -6,11 +6,12 @@
 :root {
     --primary-color: white;
     --accent-color: #c8f10f;
-    --background-color: #323335;
+    --background-color: #29292b;
     --element-color: #222222;
     --font-color-primary: #cccccc;
     --font-color-secondary: #fff;
     --font-color-deselected: #747474;
+    --font-color-wrong: #c40f0f;
    
 }
 
@@ -70,6 +71,7 @@ main {
     font-weight: 400;
     font-size: 1rem;
     color: var(--font-color-deselected);
+    text-transform: lowercase
 }
 
 #type-area {
@@ -90,13 +92,14 @@ main {
 #type-area .placeholder {
     z-index: 1;
     position: absolute;
-    color: #777777;
+    color: #585757;
 }
 
 #type-area .user-text {
     z-index: 4;
     position: absolute;
     color: #fff;
+    transition: all 0.09s ease-in-out;
 }
 
 
