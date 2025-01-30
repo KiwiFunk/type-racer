@@ -26,7 +26,10 @@ function populateTextArea() {
 function generateText() {
     const words = ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I', 
         'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
-        'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she'];
+        'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
+        'what', 'go', 'their', 'can', 'who', 'get', 'if', 'would', 'my', 'make',
+        'about', 'know', 'will', 'up', 'one', 'time', 'there', 'year', 'so', 'think',
+        'when', 'which', 'them', 'some', 'me', 'people', 'take', 'out', 'into', 'just'];
 
     let text = '';
     for (let i = 0; i < 100; i++) {
