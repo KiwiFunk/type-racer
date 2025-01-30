@@ -4,7 +4,6 @@
 
 /* Variables */
 :root {
-    --primary-color: white;
     --accent-color: #c8f10f;
     --background-color: #29292b;
     --element-color: #222222;
@@ -81,6 +80,11 @@ main {
     transition: all 0.2s ease-in-out;
 }
 
+#functions-bar h2:hover {
+    cursor: pointer;
+    color: var(--font-color-primary);
+}
+
 #type-area {
     width: 80vw;
     max-width: 900px;
@@ -127,6 +131,11 @@ footer {
     position: fixed;
     bottom: 20px;
     color: var(--font-color-secondary);
+    width: 100%;
+    display: flex; 
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 footer .caps-alert {
