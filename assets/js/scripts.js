@@ -30,6 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     formatText();
     getUserInput();
+
+    //On window resize, regenerate text to fit new screen size
+    window.addEventListener('resize', function() {
+        formatText();
+    });
 });
 
 
@@ -137,12 +142,12 @@ function wrongInput() {
  */
 
 function formatText(regenerate = false) {
-    //If the user is typing, we do not want to reset the timer
+    //Reset text and timer if function is not being used to regenerate text
     if (!regenerate) {
         startTimer()
         userIsTyping = false;
     }
-    //If the user is typing, and this function is called to regenerate text, we want to cache the previous value of user-text before resetting it
+    //If text is being regenerated, cache the old user score before clearing it. 
     if (regenerate) {
         userScore += document.querySelector('.user-text').textContent.split(' ').length;
     }
