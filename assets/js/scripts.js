@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 formatText();
             }
             if (this.dataset.type === 'wpmtoggle' && userIsTyping && document.getElementById('results-area').classList.contains('hidden')) {
+                liveWPM();
                 document.getElementById('WPM-LiveCount').classList.toggle('hidden');
             }
         });
@@ -143,6 +144,7 @@ function getUserInput() {
             if (currentText.length < targetText.length && e.key === targetText[currentText.length]) {
                 userTextElement.textContent += e.key;
                 if (document.getElementById('wpm-toggle').classList.contains('selected')) {
+                    updateLiveWPM();
                     liveWPM()
                 }
             }
@@ -150,6 +152,7 @@ function getUserInput() {
             else if (e.key === 'Backspace') {
                 userTextElement.textContent = userTextElement.textContent.slice(0, -1);
                 if (document.getElementById('wpm-toggle').classList.contains('selected')) {
+                    updateLiveWPM();
                     liveWPM()
                 }
             }
@@ -285,6 +288,7 @@ function startTimer() {
             if (timeLeft > 0) {
                 timeLeft--;
                 timerElement.innerText = timeLeft;
+                updateLiveWPM();
             } else {
                 clearInterval(timerInterval);
                 calculateWPM();
@@ -326,11 +330,6 @@ function liveWPM() {
     const lastCharIndex = userTextElement.textContent.length - 1;
 
     if (userIsTyping) {
-
-        if (liveCountElement.classList.contains('hidden')) {
-            liveCountElement.classList.remove('hidden');
-        }
-
         if (lastCharIndex >= 0) {
             const range = document.createRange();
             range.setStart(userTextElement.firstChild, lastCharIndex);
@@ -342,8 +341,17 @@ function liveWPM() {
             liveCountElement.style.left = `${rect.right - 30 + window.scrollX}px`;
         }
 
-        const elapsedTime = typingDurationTimer - timeLeft;
-        const currentWPM = elapsedTime > 0 ? Math.round((userTextElement.textContent.split(' ').length + userScore) / elapsedTime * 60) : 0;
-        liveCountElement.textContent = `${currentWPM}`;
+        // Remove the hidden class after updating the position
+        if (liveCountElement.classList.contains('hidden')) {
+            liveCountElement.classList.remove('hidden');
+        }
     }
+}
+
+function updateLiveWPM() {
+    const liveCountElement = document.getElementById('WPM-LiveCount');
+    const userTextElement = document.querySelector('.user-text');
+    const elapsedTime = typingDurationTimer - timeLeft;
+    const currentWPM = elapsedTime > 0 ? Math.round((userTextElement.textContent.split(' ').length + userScore) / elapsedTime * 60) : 0;
+    liveCountElement.textContent = `${currentWPM}`;
 }
