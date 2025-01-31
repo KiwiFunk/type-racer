@@ -35,6 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         formatText();
     });
+
+    // Add event listener for Shift + Enter to restart test
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.shiftKey) {
+            formatText();
+        }
+    });
+
 });
 
 
