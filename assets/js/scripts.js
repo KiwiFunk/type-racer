@@ -1,3 +1,6 @@
+//Prevent any accidental global variables. JS will implicitly create global variables if they are not declared.
+'use strict';
+
 // Global Values
 let userIsTyping = false;
 let typingDurationTimer = 20;
