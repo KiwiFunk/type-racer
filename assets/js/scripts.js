@@ -13,7 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let optionToggle of functionElements) {
         optionToggle.addEventListener('click', function() {
             this.classList.toggle('selected');
-            formatText();
+            if (this.dataset.type === 'punctuation' || this.dataset.type === 'numerical') {
+                formatText();
+            }
+            if (this.dataset.type === 'wpmtoggle' && userIsTyping && document.getElementById('results-area').classList.contains('hidden')) {
+                document.getElementById('WPM-LiveCount').classList.toggle('hidden');
+            }
         });
     }
 
@@ -137,12 +142,16 @@ function getUserInput() {
 
             if (currentText.length < targetText.length && e.key === targetText[currentText.length]) {
                 userTextElement.textContent += e.key;
-                liveWPM()
+                if (document.getElementById('wpm-toggle').classList.contains('selected')) {
+                    liveWPM()
+                }
             }
             
             else if (e.key === 'Backspace') {
                 userTextElement.textContent = userTextElement.textContent.slice(0, -1);
-                liveWPM()
+                if (document.getElementById('wpm-toggle').classList.contains('selected')) {
+                    liveWPM()
+                }
             }
 
             else wrongInput();
