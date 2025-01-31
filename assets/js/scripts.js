@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const difficultySelect = document.getElementById('difficulty-select');
     difficultySelect.addEventListener('change', function() {
+        formatText();
         // Implement difficulty settings
     });
 
@@ -39,14 +40,37 @@ function generateText() {
         'what', 'go', 'their', 'can', 'who', 'get', 'if', 'would', 'my', 'make',
         'about', 'know', 'will', 'up', 'one', 'time', 'there', 'year', 'so', 'think',
         'when', 'which', 'them', 'some', 'me', 'people', 'take', 'out', 'into', 'just'];
-
+    
+    const mediumWords = ['abruptly', 'absurd', 'avenue', 'awkward', 'bagpipes', 'bandwagon', 'banjo', 
+        'bungler', 'croquet', 'crypt', 'dwarves', 'fervid', 'fishhook', 'fjord', 'gazebo', 'haiku', 'haphazard', 'hyphen', 
+        'ivory', 'jazzy', 'jiffy', 'jinx', 'jukebox', 'kayak', 'kiosk', 'klutz', 'memento', 'mystify', 'numbskull', 'ostracize', 
+        'oxygen', 'pajama', 'phlegm', 'pixel', 'polka', 'quad', 'quip', 'rhythmic', 'rogue', 'sphinx', 'squawk', 'swivel', 'toady',
+        'twelfth', 'unzip', 'waxy', 'wildebeest', 'yacht', 'zealous'];
+    
+    const hardWords = ['abacinate', 'aberration', 'absquatulate', 'alexithymia', 'anfractuous', 'apocryphal', 'boustrophedon', 
+        'callipygian', 'circumlocution', 'contumacious', 'defenestration', 'discombobulate', 'disingenuous', 'dodecahedron', 
+        'eleemosynary', 'ephemeral', 'heterogeneous', 'incomprehensibilities', 'indubitably', 'magnanimous', 'multitudinous', 
+        'onomatopoeia', 'perspicacious', 'quintessential', 'sesquipedalian', 'uncharacteristically'];
+        
     let text = '';
 
     //Calculate length based off window size
     let textLength = Math.min(Math.floor(window.innerWidth / 8), 100);
 
     for (let i = 0; i < textLength; i++) {
-        text += words[Math.floor(Math.random() * words.length)] + ' ';
+
+        const difficultySelect = document.getElementById('difficulty-select').value;
+        let wordList;
+
+        if (difficultySelect === 'easy') {
+            wordList = words;
+        } else if (difficultySelect === 'medium') {
+            wordList = words.concat(mediumWords);
+        } else if (difficultySelect === 'hard') {
+            wordList = words.concat(mediumWords, hardWords);
+        }
+
+        text += wordList[Math.floor(Math.random() * wordList.length)] + ' ';
     }
     return text.trim();
 }
