@@ -113,7 +113,7 @@ main {
     color: var(--font-color-deselected);
     background-color: var(--element-color);
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 4px 4px;
     transition: all 0.2s ease-in-out;
 }

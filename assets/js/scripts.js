@@ -109,8 +109,9 @@ function wrongInput() {
  */
 
 function formatText() {
-    userIsTyping = false;
-    startTimer()
+    if (!userIsTyping) {
+        startTimer()
+    }
     //Generate New Text and clear User Input
     let textContent = generateText();
     document.querySelector('.user-text').textContent = '';
@@ -224,6 +225,7 @@ function resetTyper() {
     document.getElementById('results-area').classList.add('hidden');
     document.getElementById('timer').classList.remove('hidden');
     //format text
+    userIsTyping = false;
     formatText();
     //show typing area
     document.getElementById('type-area').classList.remove('hidden');
