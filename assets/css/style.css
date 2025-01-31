@@ -79,6 +79,11 @@ header {
    
 }
 
+header i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
 /* Main */
 main {
     margin-top: 10px;
@@ -312,6 +317,23 @@ footer .caps-alert.caps-enabled {
     color: var(--background-color);
     background-color: var(--font-color-secondary);
     border-radius: 5px;
+}
+
+.socials a {
+    text-decoration: none;
+    color: var(--font-color-secondary);
+    letter-spacing: 1.5px;
+    word-spacing: 1px;
+    padding: 0 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.socials  i {
+    font-size: 1.05rem;
+}
+
+.socials a:hover {
+    color: var(--font-color-primary);
 }
 
 /* Live WPM Counter */
