@@ -3,6 +3,8 @@ let userIsTyping = false;
 let typingDurationTimer = 3;
 let timerInterval;
 
+let userScore = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     //Functions bar functionality
@@ -109,8 +111,13 @@ function wrongInput() {
  */
 
 function formatText() {
+    //If the user is typing, we do not want to reset the timer
     if (!userIsTyping) {
         startTimer()
+    }
+    //If the user is typing, and this function is called to regenerate text, we want to cache the previous value of user-text before resetting it
+    if (userIsTyping) {
+        userScore += document.querySelector('.user-text').textContent.split(' ').length;
     }
     //Generate New Text and clear User Input
     let textContent = generateText();
@@ -216,16 +223,18 @@ function calculateWPM() {
     document.getElementById('timer').classList.add('hidden');
     document.getElementById('results-area').classList.remove('hidden');
     document.querySelector('#results-area button').addEventListener('click', resetTyper);
-    //calculate and set WPM
-    let wordsPerMinute = (document.querySelector('.user-text').textContent.split(' ').length / typingDurationTimer) * 60;
+    //calculate and set WPM. ((user-text + previous scores) / time ) * 60
+    let wordsPerMinute = ((document.querySelector('.user-text').textContent.split(' ').length + userScore) / typingDurationTimer) * 60;
     document.getElementById('results-area').firstElementChild.textContent = `WPM: ${Math.round(wordsPerMinute)}`;
 }
 
 function resetTyper() {
     document.getElementById('results-area').classList.add('hidden');
     document.getElementById('timer').classList.remove('hidden');
-    //format text
+    //Set bool to false and reset previous additional score count.
     userIsTyping = false;
+    userScore = 0;
+    //format text
     formatText();
     //show typing area
     document.getElementById('type-area').classList.remove('hidden');
