@@ -43,6 +43,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Modal functionality
+    const modal = document.getElementById('instructions-modal');
+    const closeButton = modal.querySelector('.close-button');
+
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey && e.key === 'i') {
+            modal.classList.toggle('show');
+            document.body.classList.toggle('modal-open');
+        }
+    });
+
+    closeButton.addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+    });
+
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+        }
+    });
+
 });
 
 

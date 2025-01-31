@@ -64,6 +64,12 @@ button:active {
     display: none !important;
 }
 
+.smallprint {
+    font-size: 0.8rem;
+    color: var(--font-color-deselected);
+    letter-spacing: 1px;
+}
+
 /* Header */
 header {
     width: 90%;
@@ -211,6 +217,67 @@ main {
     color: var(--font-color-wrong);
 }
 
+/* Instructions */
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--element-color);
+    margin: auto;
+    padding: 10px 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+}
+
+.modal-content p {
+    font-family: 'montserrat', sans-serif;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 1px 0;
+}
+
+.modal-content li {
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+    text-align: left;
+    color: var(--font-color-deselected)
+}
+
+.close-button {
+    color: var(--font-color-deselected);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal.show {
+    display: flex !important;
+}
+
 /* Footer */
 footer {
     position: fixed;
@@ -242,6 +309,18 @@ footer .caps-alert {
 footer .caps-alert.caps-enabled {
     color: var(--accent-color);
     font-weight: 600;
+}
+
+/* Blur Filter */
+body.modal-open {
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body.modal-open main,
+body.modal-open header,
+body.modal-open footer {
+    filter: blur(5px); /* Apply blur effect */
+    transition: filter 0.1s ease-out;
 }
 
 /* Animation */
