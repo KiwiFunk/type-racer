@@ -117,7 +117,7 @@ function getUserInput() {
 
         //Generate new text if user completes the current text
         if(userTextElement.textContent === targetText) {
-            formatText();
+            formatText(true);
         }
 
     });
@@ -136,13 +136,14 @@ function wrongInput() {
  * Formats depending on any selected formatting options.
  */
 
-function formatText() {
+function formatText(regenerate = false) {
     //If the user is typing, we do not want to reset the timer
-    if (!userIsTyping) {
+    if (!regenerate) {
         startTimer()
+        userIsTyping = false;
     }
     //If the user is typing, and this function is called to regenerate text, we want to cache the previous value of user-text before resetting it
-    if (userIsTyping) {
+    if (regenerate) {
         userScore += document.querySelector('.user-text').textContent.split(' ').length;
     }
     //Generate New Text and clear User Input
