@@ -1,5 +1,6 @@
 // Global Values
 let userIsTyping = false;
+let typingDurationTimer = 3;
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -175,10 +176,8 @@ function formatNumbers(text) {
 
 function startTimer() {
     const timerElement = document.querySelector('.number');
-    timeLeft = 20; // Reset timer to 20 seconds
-
+    timeLeft = typingDurationTimer; 
     
-
     if (timerInterval) {
         clearInterval(timerInterval);
     }
@@ -199,17 +198,22 @@ function startTimer() {
 }
 
 function calculateWPM() {
-
     //Hide Typing Area
+    document.getElementById('type-area').classList.add('hidden');
     //replace timer div with WPM result
-    //Empty functions bar and add a reset button that triggers resetTyper()
-
+    document.getElementById('timer').classList.add('hidden');
+    document.getElementById('results-area').classList.remove('hidden');
+    document.querySelector('#results-area button').addEventListener('click', resetTyper);
+    //calculate and set WPM
+    let wordsPerMinute = (document.querySelector('.user-text').textContent.split(' ').length / typingDurationTimer) * 60;
+    document.getElementById('results-area').firstElementChild.textContent = `WPM: ${Math.round(wordsPerMinute)}`;
 }
 
 function resetTyper() {
+    document.getElementById('results-area').classList.add('hidden');
+    document.getElementById('timer').classList.remove('hidden');
     //format text
-    //reset functions bar
-    //reset timer
+    formatText();
     //show typing area
-
+    document.getElementById('type-area').classList.remove('hidden');
 }

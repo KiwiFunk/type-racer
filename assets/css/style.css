@@ -38,12 +38,30 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--element-color);
+    color: var(--font-color-deselected);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:active {
+    transform: scale(1.05);
+    color: var(--font-color-primary);
+}
+
 .selected {
     color: var(--accent-color) !important;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Header */
@@ -102,6 +120,21 @@ main {
     font-size: 2.5rem;
     font-weight: 600;
 }
+
+/* Results */
+
+#results-area {
+    width: 70%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+}
+
 
 /* Typing Area */
 
