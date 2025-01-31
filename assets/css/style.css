@@ -175,7 +175,8 @@ main {
     background: transparent;
     font-weight: 500;
     font-size: 1.8rem;
-    letter-spacing: 0.14rem;
+    letter-spacing: 0.11rem;
+    word-spacing: 2.2px;
     position: relative;
 }
 
