@@ -2,6 +2,7 @@
 let userIsTyping = false;
 let typingDurationTimer = 20;
 let timerInterval;
+let timeLeft;
 
 let userScore = 0;
 
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         if (e.altKey && e.key === 'i') {
+            document.getElementById('WPM-LiveCount').classList.add('hidden');
             modal.classList.toggle('show');
             document.body.classList.toggle('modal-open');
         }
@@ -135,10 +137,12 @@ function getUserInput() {
 
             if (currentText.length < targetText.length && e.key === targetText[currentText.length]) {
                 userTextElement.textContent += e.key;
+                liveWPM()
             }
             
             else if (e.key === 'Backspace') {
                 userTextElement.textContent = userTextElement.textContent.slice(0, -1);
+                liveWPM()
             }
 
             else wrongInput();
@@ -177,6 +181,7 @@ function formatText(regenerate = false) {
     if (!regenerate) {
         startTimer()
         userIsTyping = false;
+        document.getElementById('WPM-LiveCount').classList.add('hidden');
     }
     //If text is being regenerated, cache the old user score before clearing it. 
     if (regenerate) {
@@ -286,6 +291,7 @@ function calculateWPM() {
     document.getElementById('timer').classList.add('hidden');
     document.getElementById('results-area').classList.remove('hidden');
     document.querySelector('#results-area button').addEventListener('click', resetTyper);
+    document.getElementById('WPM-LiveCount').classList.add('hidden'); // Hide live count when game ends
     //calculate and set WPM. ((user-text + previous scores) / time ) * 60
     let wordsPerMinute = ((document.querySelector('.user-text').textContent.split(' ').length + userScore) / typingDurationTimer) * 60;
     document.getElementById('results-area').firstElementChild.textContent = `WPM: ${Math.round(wordsPerMinute)}`;
@@ -301,4 +307,34 @@ function resetTyper() {
     formatText();
     //show typing area
     document.getElementById('type-area').classList.remove('hidden');
+}
+
+//Live WPM
+
+function liveWPM() {
+    const liveCountElement = document.getElementById('WPM-LiveCount');
+    const userTextElement = document.querySelector('.user-text');
+    const lastCharIndex = userTextElement.textContent.length - 1;
+
+    if (userIsTyping) {
+
+        if (liveCountElement.classList.contains('hidden')) {
+            liveCountElement.classList.remove('hidden');
+        }
+
+        if (lastCharIndex >= 0) {
+            const range = document.createRange();
+            range.setStart(userTextElement.firstChild, lastCharIndex);
+            range.setEnd(userTextElement.firstChild, lastCharIndex + 1);
+    
+            const rect = range.getBoundingClientRect();
+    
+            liveCountElement.style.top = `${rect.bottom - 85 + window.scrollY}px`;
+            liveCountElement.style.left = `${rect.right - 30 + window.scrollX}px`;
+        }
+
+        const elapsedTime = typingDurationTimer - timeLeft;
+        const currentWPM = elapsedTime > 0 ? Math.round((userTextElement.textContent.split(' ').length + userScore) / elapsedTime * 60) : 0;
+        liveCountElement.textContent = `${currentWPM}`;
+    }
 }

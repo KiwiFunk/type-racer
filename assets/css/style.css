@@ -7,7 +7,7 @@
     --accent-color: #c8f10f;
     --background-color: #29292b;
     --element-color: #222222;
-    --font-color-primary: #ebebeb;
+    --font-color-primary: #e7e7e7;
     --font-color-secondary: #4d4d4d;
     --font-color-deselected: #747474;
     --font-color-wrong: #b80f0f;
@@ -300,9 +300,8 @@ footer .help-tips {
     display: flex;
     flex-flow: row nowrap;
     gap: 30px;
-    justify-content: space-around
+    justify-content: space-around;
 }
-
 
 footer .caps-alert.caps-enabled {
     background-color: var(--accent-color);
@@ -313,6 +312,32 @@ footer .caps-alert.caps-enabled {
     color: var(--background-color);
     background-color: var(--font-color-secondary);
     border-radius: 5px;
+}
+
+/* Live WPM Counter */
+#WPM-LiveCount {
+    position: absolute;
+    z-index: 20;
+    padding: 3px 10px;
+    background-color: var(--accent-color);
+    border-radius: 16px;
+    color: var(--background-color);
+    font-family: 'montserrat', sans-serif;
+    font-weight: 700;
+
+    border: 10px solid var(--background-color);
+}
+
+#WPM-LiveCount::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--accent-color);
+   
 }
 
 /* Blur Filter */
@@ -326,6 +351,7 @@ body.modal-open footer {
     filter: blur(5px); /* Apply blur effect */
     transition: filter 0.1s ease-out;
 }
+
 
 /* Animation */
 
