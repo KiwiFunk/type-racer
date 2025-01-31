@@ -73,9 +73,10 @@ button:active {
 /* Header */
 header {
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
     height: 100px;
     background-color: var(--background-color);
+    letter-spacing: 1px;
    
 }
 
@@ -100,6 +101,7 @@ main {
     gap: 20px;
     padding: 2px 24px;
     border-radius: 14px;
+    letter-spacing: 1px;
 
     background-color: var(--element-color);
 }
@@ -180,7 +182,7 @@ main {
     background: transparent;
     font-weight: 500;
     font-size: 1.8rem;
-    letter-spacing: 0.11rem;
+    letter-spacing: 2px;
     word-spacing: 2.2px;
     position: relative;
 }
@@ -300,7 +302,7 @@ footer {
 
 footer .help-tips {
     width: 85%;
-    max-width: 900px;
+    max-width: 1000px;
     letter-spacing: 1px;
     display: flex;
     flex-flow: row nowrap;
