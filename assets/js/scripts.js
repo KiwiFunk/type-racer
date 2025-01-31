@@ -1,6 +1,6 @@
 // Global Values
 let userIsTyping = false;
-let typingDurationTimer = 3;
+let typingDurationTimer = 20;
 let timerInterval;
 
 let userScore = 0;
