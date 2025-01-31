@@ -54,24 +54,26 @@ function generateText() {
         
     let text = '';
 
-    //Calculate length based off window size
-    let textLength = Math.min(Math.floor(window.innerWidth / 8), 100);
+    
+    const difficultySelect = document.getElementById('difficulty-select').value;
+    let textLength
+    let wordList;
+
+    if (difficultySelect === 'easy') {
+        wordList = words;
+        textLength = Math.min(Math.floor(window.innerWidth / 8), 100);
+    } else if (difficultySelect === 'medium') {
+        wordList = words.concat(mediumWords);
+        textLength = Math.min(Math.floor(window.innerWidth / 10), 80);
+    } else if (difficultySelect === 'hard') {
+        wordList = words.concat(mediumWords, hardWords);
+        textLength = Math.min(Math.floor(window.innerWidth / 12), 60);
+    }
 
     for (let i = 0; i < textLength; i++) {
-
-        const difficultySelect = document.getElementById('difficulty-select').value;
-        let wordList;
-
-        if (difficultySelect === 'easy') {
-            wordList = words;
-        } else if (difficultySelect === 'medium') {
-            wordList = words.concat(mediumWords);
-        } else if (difficultySelect === 'hard') {
-            wordList = words.concat(mediumWords, hardWords);
-        }
-
         text += wordList[Math.floor(Math.random() * wordList.length)] + ' ';
     }
+
     return text.trim();
 }
 
