@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const durationSelect = document.getElementById('duration-select');
+    durationSelect.addEventListener('change', function() {
+        typingDurationTimer = parseInt(this.value);
+        formatText();
+    });
+
+    const difficultySelect = document.getElementById('difficulty-select');
+    difficultySelect.addEventListener('change', function() {
+        // Implement difficulty settings
+    });
+
     formatText();
     getUserInput();
 });
