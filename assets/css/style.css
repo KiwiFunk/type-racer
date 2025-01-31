@@ -288,6 +288,8 @@ footer {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    font-size: 0.85rem;
+    word-spacing: 2px;
 }
 
 footer .help-tips {
@@ -300,15 +302,16 @@ footer .help-tips {
     justify-content: space-around
 }
 
-footer .caps-alert {
-    color: var(--font-color-secondary);
-    flex-grow: 1;
-    text-align: right;
-}
 
 footer .caps-alert.caps-enabled {
-    color: var(--accent-color);
-    font-weight: 600;
+    background-color: var(--accent-color);
+}
+
+.key-styling {
+    padding: 2.5px 5.5px;
+    color: var(--background-color);
+    background-color: var(--font-color-secondary);
+    border-radius: 5px;
 }
 
 /* Blur Filter */
